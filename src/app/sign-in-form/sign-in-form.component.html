@@ -1,0 +1,12 @@
+<div class="container">
+  <form class="card" [formGroup]="form" #formGr = "ngForm">
+    <div class="form-control col">
+      <input type="text" placeholder="NickName" formControlName="username" (keydown)="userNameChange()" required>
+    </div>
+    <div class="form-control col">
+      <input type="text" placeholder="Password" (keydown)="passwordChange()" formControlName="password" required>
+    </div>
+    <button class="btn" type = "submit" [routerLink]="''" [disabled]="form.invalid || checkPasswordUserName()"  >Отправить</button>
+    <button class="btn" type = "submit" [routerLink]="''">Close</button>
+  </form>
+</div>
