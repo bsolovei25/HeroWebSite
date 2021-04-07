@@ -32,11 +32,11 @@ export class LogInFormComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [
+      email: new FormControl('bS@gmail.com', [
         Validators.required,
         forbiddenEmailValidator(/^[\w-\.]+@([\w-]+\.)+(com|net|org|co|us)$/g)
       ]),
-      password: new FormControl('', [
+      password: new FormControl('sW2sdadf', [
         Validators.required,
         forbiddenPasswordValidator(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/g),
       ])
@@ -66,11 +66,13 @@ export class LogInFormComponent implements OnInit, AfterViewInit, OnChanges {
 
   checkPasswordEmail(): boolean {
     if (this.formEmail !== undefined && this.formPassword !== undefined){
-      return  this.formEmail.toLowerCase().indexOf(this.formPassword.toLowerCase()) === -1;
+      return  this.formEmail.toLowerCase().indexOf(this.formPassword.toLowerCase()) !== -1;
 
     } else {
       return false;
     }
   }
-
+  onSubmit(): void{
+    console.log(this.form);
+  }
 }

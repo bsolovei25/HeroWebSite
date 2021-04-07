@@ -39,7 +39,7 @@ export class SignInFormComponent implements OnInit, OnChanges {
 
   checkPasswordUserName(): boolean {
     if (this.formUserName !== undefined && this.formPassword !== undefined){
-      return  this.formUserName.toLowerCase().indexOf(this.formPassword.toLowerCase()) === -1;
+      return  this.formUserName.toLowerCase().indexOf(this.formPassword.toLowerCase()) !== -1;
 
     } else {
       return false;
