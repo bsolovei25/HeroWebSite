@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {forbiddenEmailValidator, forbiddenPasswordValidator, MyValidators} from '../my.validators';
+import {Post} from '../post.model';
+import {UserautificationModel} from '../userautification.model';
 
 
 @Component({
@@ -72,7 +74,8 @@ export class LogInFormComponent implements OnInit, AfterViewInit, OnChanges {
       return false;
     }
   }
-  onSubmit(): void{
-    console.log(this.form);
+
+  onSubmit(postData: UserautificationModel) {
+
   }
 }

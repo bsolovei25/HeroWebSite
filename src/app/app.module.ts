@@ -9,12 +9,14 @@ import { LogInFormComponent } from './log-in-form/log-in-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UserAutificationComponent } from './nav-bar/user-autification/user-autification.component';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { HttpPostComponent } from './firbase-http/http-post/http-post.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: NavBarComponent},
   {path: 'login', component: LogInFormComponent},
   {path: 'signin', component: SignInFormComponent},
+  {path: 'request', component: HttpPostComponent},
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     LogInFormComponent,
     NavBarComponent,
     UserAutificationComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    HttpPostComponent
   ],
   imports: [
     BrowserModule,
