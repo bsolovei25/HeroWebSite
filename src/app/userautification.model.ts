@@ -1,1 +1,1 @@
-export interface UserautificationModel {title: string; content: string; date: Date; id?: string; }
+export interface UserautificationModel { email: string; password: string;  dateCName: Date; id?: string; }

@@ -29,6 +29,7 @@ export class PostService{
           const postArray: Post[] = [];
           console.log(responceData)
           for (const key in responceData){
+            console.log(key)
             if (responceData.hasOwnProperty(key)){
               postArray.push({ ...responceData[key], id: key});
             }

@@ -1,21 +1,92 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <form class="card" [formGroup]="form" (ngSubmit)="onSubmit(formGr)" #formGr = "ngForm" >
+      <form class="card" [formGroup]="form" #formGr = "ngForm" (ngSubmit)="onCreatePost(formGr.value)"  >
         <div class="form-group">
-          <div class="form-control col">
-            <input type="text" placeholder="Email" formControlName="email" (keydown)="emailChange()" required>
-          </div>
-          </div>
-        <div class="form-group">
-          <div class="form-control col">
-            <input type="text" placeholder="Password"  formControlName="password" (keydown)="passwordChange()" required>
-          </div>
-        </div>
+          <label for="emailid">Email</label>
+            <input type="text"
+                   formControlName="email"
+                      id = emailid
+                   class="form-control"
+                   placeholder="Email"
+                   (keydown)="emailChange()"
+                    required>
+<!--                   ngModel-->
+<!--                   name="email"-->
 
-        <button class="btn" type = "button" [routerLink]="''" [disabled]="form.invalid || checkPasswordEmail()"  >Отправить</button>
-        <button class="btn" type = "submit" [routerLink]="''">Close</button>
+<!--          </input>-->
+        </div>
+        <div class="form-group">
+          <label for="nicknameid">Nickname</label>
+            <input type="text"
+                   id = 'nicknameid'
+                   class="form-control"
+                   placeholder="Password"
+                   formControlName="password"
+                   (keydown)="passwordChange()"
+                   required>
+<!--                   ngModel-->
+<!--                   name="nickname"-->
+
+<!--        </input>-->
+        </div>
+        <div class="form-group">
+          <label for="dateid">Date</label>
+          <input type="date"
+                 class="form-control"
+                    id = 'dateid'
+                 formControlName="dateCName"
+                 required>
+<!--                 ngModel-->
+<!--                 name="date"-->
+
+<!--          </input>-->
+        </div>
+<!--        <div *ngIf="this.IsSameUserName;then ifBlock"></div>-->
+        <button class="btn btn-primary" type = "submit" [disabled]="form.invalid ">{{this.isLoginMode?'Log In':'Sign Up'}}</button>
+        <button class="btn btn-primary" type = "button" (click)="onSwitchMode()" >{{this.isLoginMode?'Sign Up':'Log In'}}</button>
+<!--        <ng-template #ifBlock>-->
+<!--        <button class="btn btn-primary" type = "submit" [disabled]="form.invalid || checkPasswordEmail()"  >Log In User</button>-->
       </form>
+
     </div>
   </div>
+  <hr/>
+
+<!--  <button class="btn" type = "submit" [routerLink]="''">Close</button>-->
+
+
+
+
+<!--  <div class="row">-->
+<!--    <div class="col-xs-12 col-md-6 col-md-offset-3">-->
+<!--      <button class="btn btn-primary" (click)="onFetchPosts()">-->
+<!--        -->
+<!--        Fetch Posts-->
+<!--      </button>-->
+<!--      |-->
+<!--      <button-->
+<!--        class="btn btn-danger"-->
+<!--        [disabled]="loadedPosts.length < 1"-->
+<!--        (click)="onClearPosts()"-->
+<!--      >-->
+<!--        Clear Posts-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row">-->
+<!--    <div class="col-xs-12 col-md-6 col-md-offset-3">-->
+<!--      <p *ngIf="loadedPosts.length <1 ">No posts available!</p>-->
+<!--      <ul class="list-group" *ngIf="loadedPosts.length >= 1">-->
+<!--        <li class="list-group-item" *ngFor="let post of loadedPosts">-->
+<!--          <h1>{{post.email}}</h1>-->
+<!--          <p>{{post.password}}</p>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <div class="alert alert-danger" *ngIf="error">-->
+<!--        <h1>An error occured</h1>-->
+<!--        <p>{{error}}</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
