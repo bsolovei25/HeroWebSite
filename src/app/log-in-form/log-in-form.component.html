@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <form class="card" [formGroup]="form" #formGr = "ngForm" (ngSubmit)="onCreatePost(formGr.value)"  >
+      <div class="alert alert-danger" *ngIf="this.error">{{this.error}}</div>
+      <div *ngIf="isLoading" style = "text-align: center;"><app-loading-spinner></app-loading-spinner></div>
+      <form class="card" [formGroup]="form" #formGr = "ngForm" (ngSubmit)="onCreatePost(formGr.value)" *ngIf="!isLoading" >
         <div class="form-group">
           <label for="emailid">Email</label>
             <input type="text"
@@ -29,18 +31,6 @@
 <!--                   name="nickname"-->
 
 <!--        </input>-->
-        </div>
-        <div class="form-group">
-          <label for="dateid">Date</label>
-          <input type="date"
-                 class="form-control"
-                    id = 'dateid'
-                 formControlName="dateCName"
-                 required>
-<!--                 ngModel-->
-<!--                 name="date"-->
-
-<!--          </input>-->
         </div>
 <!--        <div *ngIf="this.IsSameUserName;then ifBlock"></div>-->
         <button class="btn btn-primary" type = "submit" [disabled]="form.invalid ">{{this.isLoginMode?'Log In':'Sign Up'}}</button>

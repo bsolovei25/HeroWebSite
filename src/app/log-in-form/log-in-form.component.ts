@@ -1,12 +1,16 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {forbiddenEmailValidator, forbiddenPasswordValidator, MyValidators} from '../my.validators';
 import {Post} from '../post.model';
 import {UserautificationModel} from '../userautification.model';
 import {UserService} from '../user.service';
+
+import {AuthService} from '../auth.service';
 import {HttpClient} from '@angular/common/http';
 import {PostService} from '../post.service';
-
+import {Observable, Subscription} from 'rxjs';
+import {AuthResponceData} from '../auth.service';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-log-in-form',
@@ -17,17 +21,24 @@ import {PostService} from '../post.service';
 
 
 export class LogInFormComponent implements OnInit {
-  @ViewChild('formGr') formGroupElem !: NgForm
+  isAuthenticated = false;
+  private userSub!: Subscription;
   form!: FormGroup;
   formEmail!: string;
   formPassword!: string;
-  isLoginMode = true
+  isLoginMode = true;
+  isLoading = false;
+  error: any = null;
 
   @Input() prop!: any;
   loadedPosts: UserautificationModel[] = [];
-  IsSameUserName = true
+  IsSameUserName = true;
 
-  constructor(private http: HttpClient, private UserService: UserService) { }
+
+  constructor(private http: HttpClient,
+              private UserService: UserService,
+              private router: Router,
+              private authService: AuthService)  { }
 
   emailChange(): void{
     this.formEmail = this.form.controls.email.value;
@@ -42,6 +53,12 @@ export class LogInFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.userSub = this.authService.user.subscribe(user => {
+    //   console.log('i have changed');
+    //   console.log(user);
+    //   console.log(!!user);
+    //   this.isAuthenticated = !!user;
+    // })
     this.form = new FormGroup({
       email: new FormControl('bS@gmail.com', [
         Validators.required,
@@ -50,9 +67,6 @@ export class LogInFormComponent implements OnInit {
       password: new FormControl('sW2sdadf', [
         Validators.required,
         //forbiddenPasswordValidator(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/g),
-      ]),
-      dateCName: new FormControl('', [
-        Validators.required
       ]),
     });
   }
@@ -79,36 +93,34 @@ export class LogInFormComponent implements OnInit {
   }
 
   onCreatePost(postData: UserautificationModel) {
-    // Send Http request
-    // console.log(postData)
-    // this.http
-    //   .post<{name: string}>('https://base-for-herosite-default-rtdb.firebaseio.com/posts.json', postData)
-    //
-    //
-    //   .subscribe(responseData => {
-    //     console.log(responseData);
-    //   });
-    console.log(postData);
-    this.checkValuesIdentical(postData);
-    console.log(this.IsSameUserName)
-    this.UserService.createAndStoreUser(postData.password, postData.email, postData.dateCName);
-    this.form.reset()
+    //this.UserService.createAndStoreUser(postData.password, postData.email, postData.dateCName);
+    this.formEmail = this.form.value.email;
+    this.formPassword = this.form.value.password;
+    let authObs: Observable<AuthResponceData>;
+    this.isLoading = true;
+    // if (this.form.invalid) {
+    //   return;
+    // }
+    if (this.isLoginMode){
+      authObs = this.authService.login(this.formEmail, this.formPassword);
+    } else {
+      authObs = this.authService.signup(this.formEmail, this.formPassword);
+    }
 
+    authObs.subscribe(
+      post => {
+        console.log('log-in-form console')
+        console.log(post);
+        this.isLoading = false;
+        this.router.navigate(['/']);
+      }, errorMessage => {
+        console.log(errorMessage);
+        this.error = errorMessage;
+        this.isLoading = false;
+      });
+
+    this.form.reset();
   }
-  checkValuesIdentical(postData: UserautificationModel){
-
-    console.log(postData.email);
-    this.UserService.getAllUsers().subscribe(post => {
-      this.loadedPosts = post;
-      console.log(this.loadedPosts)
-      for (let i of this.loadedPosts) {
-        if (postData.email === i.email){
-          this.IsSameUserName = false;
-        }
-      }
-    });
-  }
-
 
 }
 
