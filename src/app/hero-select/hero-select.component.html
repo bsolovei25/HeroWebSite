@@ -1,1 +1,51 @@
-<p>hero-select works!</p>
+<div class=container>
+  <!-- Row -->
+  <div class="row">
+    <!-- This div takes 1 out of
+         12 columns in the grid -->
+    <div class="col-1">
+      <!--This row contains the col which
+      shows the column heading-->
+      <div class="row">
+        <!-- this div takes 12 out of
+          12 columns in the grid -->
+      </div>
+      <!-- This row contains the menu items-->
+      <div class="row">
+        <div class="col" style="text-align: center;
+                            padding: 15px;">
+          <a href="#">A</a><br> <br>
+
+        </div>
+      </div>
+
+    </div>
+    <!--This column takes 11 out of 12
+    columns available-->
+    <div class="col-11">
+      <!--This row contains the first column-->
+      <div class="row">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search this blog" [value]= 'customValue'>
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button">
+              <i class="fa fa-search" style = "color: #cccccc"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <ul class="dropdown-menu scrollable-menu" role="menu">
+      <li>
+        <div class="item" (click)="valueClick('Select Category')">Select Category</div>
+      </li>
+      <hr class="style-hr">
+      <li>
+        <div class="item"  (click)="valueClick('General Inquiries')">General Inquiries</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<button (click)="NavigateToWelcomePage()">Return Back To Main Page</button>

@@ -62,11 +62,11 @@ export class LogInFormComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('bS@gmail.com', [
         Validators.required,
-        //forbiddenEmailValidator(/^[\w-\.]+@([\w-]+\.)+(com|net|org|co|us)$/g)
+        forbiddenEmailValidator(/^[\w-\.]+@([\w-]+\.)+(com|net|org|co|us)$/g)
       ]),
       password: new FormControl('sW2sdadf', [
         Validators.required,
-        //forbiddenPasswordValidator(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/g),
+        forbiddenPasswordValidator(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/g),
       ]),
     });
   }
@@ -112,7 +112,7 @@ export class LogInFormComponent implements OnInit {
         console.log('log-in-form console')
         console.log(post);
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/heropick']);
       }, errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;

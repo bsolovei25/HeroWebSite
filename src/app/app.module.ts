@@ -12,6 +12,8 @@ import { HttpPostComponent } from './firbase-http/http-post/http-post.component'
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { HeroSelectComponent } from './hero-select/hero-select.component';
 import { environment } from 'src/environments/environment';
+import { SelectOptionInputComponent } from './select-option-input/select-option-input.component';
+
 
 
 const appRoutes: Routes = [
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     SignInFormComponent,
     HttpPostComponent,
     LoadingSpinnerComponent,
-    HeroSelectComponent
+    HeroSelectComponent,
+    SelectOptionInputComponent
   ],
   imports: [
     BrowserModule,

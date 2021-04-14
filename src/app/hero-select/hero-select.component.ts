@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hero-select',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  customValue = 'DefaultValue';
   ngOnInit(): void {
   }
 
+  NavigateToWelcomePage() {
+    this.router.navigate(['/']);
+  }
+
+  valueClick(selectCategory: string) {
+    this.customValue = selectCategory;
+  }
 }
