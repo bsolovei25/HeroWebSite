@@ -14,8 +14,14 @@
       <div class="row">
         <div class="col" style="text-align: center;
                             padding: 15px;">
-          <a href="#">A</a><br> <br>
 
+<!--          <ng-template #thenBlock><a *ngIf="!ShouldLettersShow" (click) = "ShowAllLetters()" href="#">A</a><br> <br></ng-template>-->
+<!--          <ng-template #elseBlock><a *ngIf="ShouldLettersShow" href="#">B</a><br> <br></ng-template>-->
+          <a *ngIf="!ShouldLettersShow" (click) = "ShowAllLetters()">A</a><br> <br>
+          <div *ngFor="let alph of alpha">
+            <a *ngIf="ShouldLettersShow" (click) = "ShowAllLetters()" appChooseletter>{{alph}}</a><br> <br>
+          </div>
+<!--          <p [appHighlight]="color">Highlight me!</p>-->
         </div>
       </div>
 
@@ -25,26 +31,46 @@
     <div class="col-11">
       <!--This row contains the first column-->
       <div class="row">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search this blog" [value]= 'customValue'>
-          <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">
-              <i class="fa fa-search" style = "color: #cccccc"></i>
-            </button>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Number</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="row">
+        <div class="containerLoadList">
+          <div class="row single-div border border" style="padding: 25px 50px;">
+            <div class="col-4">
+              <div>
+                <p class="loadNameParagraph">Your Beer Name</p>
+              </div>
+              <div>
+                <img class = 'imgClass' src="" alt="Trulli" width="70px">
+              </div>
+            </div>
+            <div class="col-5 beerDescription">
+              <p class="beerDescriptionParagraph">
+                What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?
+              </p>
+            </div>
+            <div class = "col-1 beerAddToFavorites">
+              <button class = "btn btn-primary beerAddToFavoritesButton">Select</button>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
-    <ul class="dropdown-menu scrollable-menu" role="menu">
-      <li>
-        <div class="item" (click)="valueClick('Select Category')">Select Category</div>
-      </li>
-      <hr class="style-hr">
-      <li>
-        <div class="item"  (click)="valueClick('General Inquiries')">General Inquiries</div>
-      </li>
-    </ul>
   </div>
 </div>
 
