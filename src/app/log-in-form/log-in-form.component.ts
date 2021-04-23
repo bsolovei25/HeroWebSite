@@ -109,7 +109,7 @@ export class LogInFormComponent implements OnInit {
 
     authObs.subscribe(
       post => {
-        console.log('log-in-form console')
+        console.log('log-in-form console');
         console.log(post);
         this.isLoading = false;
         this.router.navigate(['/heropick']);

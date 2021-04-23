@@ -1,0 +1,8 @@
+<input type="text" (input)="fetchSeries($event)" #HeroName [(ngModel)]="this.chosedProperty" [value] = "this.chosedProperty" placeholder="Enter the name of your series"/>
+<button [disabled] = "checkIfEmpty()" class = "btn btn-primary" type="click" (click)="fetchFunction()"><i class="fa fa-search"></i></button>
+<!--<input type="text" appChooseletter [appHighlight] = "chosedProperty" (input)="fetchSeries($event)" [value] = "chosedProperty" placeholder="Enter the name of your series"/>-->
+<ul>
+  <li *ngFor="let show of searchList">
+    <a (click)="SwapInputValue($event)"> {{ show.name }}</a>
+  </li>
+</ul>

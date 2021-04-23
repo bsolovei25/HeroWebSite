@@ -16,6 +16,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import { ChooseletterDirective } from './chooseletter.directive';
+import { DropDownSearchesComponent } from './drop-down-searches/drop-down-searches.component';
+import { SingleHeroBlockComponent } from './single-hero-block/single-hero-block.component';
 
 
 
@@ -37,6 +39,8 @@ const appRoutes: Routes = [
     LoadingSpinnerComponent,
     HeroSelectComponent,
     ChooseletterDirective,
+    DropDownSearchesComponent,
+    SingleHeroBlockComponent,
   ],
   imports: [
     BrowserModule,

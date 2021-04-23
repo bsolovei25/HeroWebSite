@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {ChooseletterDirective} from '../chooseletter.directive'
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-hero-select',
@@ -12,29 +13,30 @@ import {ChooseletterDirective} from '../chooseletter.directive'
 })
 export class HeroSelectComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  userName = '';
+  var = '';
+  private userSub!: Subscription;
+  constructor(private router: Router, private authService: AuthService) { }
+  HeroArray: Array<string> = [];
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   alpha: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   ShouldLettersShow = false;
-  filteredOptions!: Observable<string[]>;
+  //HeroArray: Array<string> = [];
 
-  ngOnInit() {
-    console.log(this.myControl.valueChanges);
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-      startWith(''),
-        map(value => this._filter(value))
-    );
+  ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe( user => {
+      if (user){
+        this.userName = user.email;
+      }
+    });
   }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  getHeroesFound(event: string[]){
+    this.HeroArray = event;
+    for (let i of this.HeroArray) {
+      console.log(i)
+    }
   }
-
 
   NavigateToWelcomePage() {
     this.router.navigate(['/']);

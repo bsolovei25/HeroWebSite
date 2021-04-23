@@ -8,7 +8,7 @@ export class PostService{
   constructor(private http: HttpClient) {}
 
   createAndStorePost(title: string, content: string){
-    const postData: Post = {title: title, content: content}
+    const postData: Post = {title: title, content: content};
     this.http
       .post<{name: string}>('https://base-for-herosite-default-rtdb.firebaseio.com/posts.json'
         , postData, {
@@ -17,8 +17,6 @@ export class PostService{
 
         }
         )
-
-
       .subscribe(responseData => {
         console.log(responseData);
       });

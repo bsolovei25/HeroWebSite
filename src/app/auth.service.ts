@@ -4,7 +4,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, Subject, throwError} from 'rxjs';
 import {User} from './user.model';
 
-export interface AuthResponceData {idToken: string; email: string; refreshToken: string; expiresIn: string; localId: string; registered?: boolean }
+export interface AuthResponceData {idToken: string; email: string; refreshToken: string; expiresIn: string; localId: string; registered?: boolean}
 
 
 @Injectable({

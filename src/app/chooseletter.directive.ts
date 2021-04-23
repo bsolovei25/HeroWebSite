@@ -7,7 +7,7 @@ export class ChooseletterDirective {
 
   color = '';
   constructor(public el: ElementRef) {
-    this.color = 'yellow';
+    //el.nativeElement.style.color = 'pink';
   }
   @Input() appHighlight!: string;
 
