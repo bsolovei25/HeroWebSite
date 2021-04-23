@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {ChooseletterDirective} from '../chooseletter.directive'
+import {ChooseletterDirective} from '../chooseletter.directive';
 import {AuthService} from '../auth.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class HeroSelectComponent implements OnInit {
   getHeroesFound(event: object[]){
     this.HeroArray = event;
     for (let i of this.HeroArray) {
-      console.log(i)
+      console.log(i);
     }
   }
 

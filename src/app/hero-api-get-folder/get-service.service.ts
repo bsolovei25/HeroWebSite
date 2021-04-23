@@ -6,16 +6,58 @@ import {Todo} from '../app.component';
 
 
 
-// export interface HeroModel {
-//   id: string;
-//   name: string;
-//   powerstats: Powerstats[];
-//   biography: Biography[];
-//   appearance: Appearence[];
-//   work: Work[];
-//   connections: Connections[];
-//   image:
-// }
+export interface HeroModel {
+  id: string;
+  name: string;
+  powerstats: Powerstats[];
+  biography: Biography[];
+  appearance: Appearence[];
+  work: Work[];
+  connections: Connections[];
+  image: ImageArray[];
+}
+
+interface Powerstats {
+  intelligence: string;
+  strength: string;
+  speed: string;
+  durability: string;
+  power: string;
+  combat: string;
+}
+
+interface Biography{
+  full_name: string;
+  alter_egos: string;
+  aliases: string[];
+  place_of_birth: string;
+  first_appearance: string;
+  publisher: string;
+  alignment: string;
+}
+
+interface Appearence{
+  gender: string;
+  race: string;
+  height: string[];
+  weight: string[];
+  eye_color: string;
+  hair_color: string;
+}
+
+interface Work{
+  occupation: string;
+  base: string;
+}
+
+interface Connections{
+  group_affiliation: string;
+  base: string;
+}
+
+interface ImageArray {
+  url: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +67,7 @@ import {Todo} from '../app.component';
 
 export class GetServiceService {
 
-  //heroes: HeroFound [] = [];
+  //heroes: HeroModel [] = [];
 
   constructor(private http: HttpClient) {}
 

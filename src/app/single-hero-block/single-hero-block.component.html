@@ -4,15 +4,16 @@
       <div class="row single-div border border" style="padding: 25px 50px;">
         <div class="col-4">
           <div>
-            <p class="loadNameParagraph">{{hero.id}}</p>
+            <p class="loadNameParagraph">{{hero.name}}</p>
           </div>
           <div>
-            <img class = 'imgClass' src="" alt="Trulli" width="70px">
+            <img class = 'imgClass' src="{{hero.image.url}}" alt="Trulli" width="70px">
+
           </div>
         </div>
         <div class="col-5 beerDescription">
-          <p class="beerDescriptionParagraph">
-            What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?
+          <p class="beerDescriptionParagraph" *ngFor = "let stat of hero.powerstats | keyvalue">
+            {{stat.key}}  :   {{stat.value}}
           </p>
         </div>
         <div class = "col-1 beerAddToFavorites">

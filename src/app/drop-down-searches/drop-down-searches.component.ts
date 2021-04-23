@@ -2,7 +2,7 @@ import {ElementRef, Input, Output, ViewChild} from '@angular/core';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../auth.service';
-import {GetServiceService} from '../hero-api-get-folder/get-service.service';
+import {GetServiceService, HeroModel} from '../hero-api-get-folder/get-service.service';
 
 
 @Component({
