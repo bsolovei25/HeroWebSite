@@ -17,7 +17,7 @@ export class HeroSelectComponent implements OnInit {
   var = '';
   private userSub!: Subscription;
   constructor(private router: Router, private authService: AuthService) { }
-  HeroArray: Array<string> = [];
+  HeroArray: Array<object> = [];
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   alpha: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -31,7 +31,7 @@ export class HeroSelectComponent implements OnInit {
       }
     });
   }
-  getHeroesFound(event: string[]){
+  getHeroesFound(event: object[]){
     this.HeroArray = event;
     for (let i of this.HeroArray) {
       console.log(i)

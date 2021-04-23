@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SingleHeroBlockComponent implements OnInit {
 
-  @Input() heroArrayBlock: Array<string> = [];
+  @Input() heroArrayBlock: Array<object> = [];
   constructor() { }
 
 

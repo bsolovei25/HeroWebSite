@@ -19,7 +19,7 @@ export class DropDownSearchesComponent implements OnInit {
   private userSub!: Subscription;
   val = true;
   //loadedPosts: PostHeroModel[] = [];
-  @Output() gettedHeroListByName: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() gettedHeroListByName: EventEmitter<object[]> = new EventEmitter<object[]>();
   loadedPosts = [];
 
   public seriesList: Array<any> = [
