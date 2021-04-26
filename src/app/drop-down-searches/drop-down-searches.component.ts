@@ -2,7 +2,9 @@ import {ElementRef, Input, Output, ViewChild} from '@angular/core';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../auth.service';
-import {GetServiceService, HeroModel} from '../hero-api-get-folder/get-service.service';
+import {GetServiceService} from '../hero-api-get-folder/get-service.service';
+import {HeroModel} from '../models/HeroModel.model';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -48,12 +50,17 @@ export class DropDownSearchesComponent implements OnInit {
   fetchFunction(){
     console.log(this.userName);
     console.log(this.chosedProperty);
-    this.GetServiceService.fetchPosts().subscribe(responseData => {
-      //this.loadedPosts = responseData;
-      this.gettedHeroListByName.emit(responseData.results);
+    this.GetServiceService.fetchPosts(this.chosedProperty).subscribe(responseData => {
+      //console.log(responseData.results);
+      //this.gettedHeroListByName.emit(responseData.results);
+      this.emitterFunction(responseData);
     }, error => {
       this.error = error.message;
     })
+  }
+
+  emitterFunction(responseData: any){
+    this.gettedHeroListByName.emit(responseData.results);
   }
 
   checkIfEmpty() {
@@ -72,10 +79,18 @@ export class DropDownSearchesComponent implements OnInit {
   }
 
   SwapInputValue(event: any) {
-    console.log(this.chosedProperty );
-    console.log(event.target.innerText );
+
     this.chosedProperty = event.target.innerText;
     this.searchList = [];
+    console.log(this.chosedProperty );
+    console.log(event.target.innerText );
+    this.GetServiceService.fetchPosts(this.chosedProperty).subscribe(responseData => {
+      //console.log(responseData.results);
+      //this.gettedHeroListByName.emit(responseData.results);
+      this.emitterFunction(responseData);
+    }, error => {
+      this.error = error.message;
+    })
   }
 
 

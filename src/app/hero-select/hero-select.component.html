@@ -17,9 +17,9 @@
 
 <!--          <ng-template #thenBlock><a *ngIf="!ShouldLettersShow" (click) = "ShowAllLetters()" href="#">A</a><br> <br></ng-template>-->
 <!--          <ng-template #elseBlock><a *ngIf="ShouldLettersShow" href="#">B</a><br> <br></ng-template>-->
-          <a *ngIf="!ShouldLettersShow" (click) = "ShowAllLetters()">A</a><br> <br>
+          <a *ngIf="!ShouldLettersShow" (click) = "ShowAllLetters($event)">A</a><br> <br>
           <div *ngFor="let alph of alpha">
-            <a *ngIf="ShouldLettersShow" (click) = "ShowAllLetters()" appChooseletter>{{alph}}</a><br> <br>
+            <a *ngIf="ShouldLettersShow" (click) = "ShowAllLetters($event)" appChooseletter>{{alph}}</a><br> <br>
           </div>
 <!--          <p [appHighlight]="color">Highlight me!</p>-->
         </div>
